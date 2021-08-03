@@ -1,4 +1,4 @@
-module github.com/yuto51942/network-util
+module github.com/hello-slide/network-util
 
 go 1.16
 
