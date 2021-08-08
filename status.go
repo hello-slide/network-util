@@ -24,6 +24,18 @@ func ErrorResponse(w http.ResponseWriter, statusCode int, err error) {
 		ErrorResponse(w, 1, err)
 	}
 
+	switch statusCode {
+	case 1:
+		ErrorStatus(w)
+		break
+	case 2:
+		w.WriteHeader(http.StatusUnauthorized)
+		break
+	default:
+		ErrorStatus(w)
+		break
+	}
+
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(responseText)
 }
