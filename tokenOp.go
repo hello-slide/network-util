@@ -2,17 +2,31 @@ package networkutil
 
 import (
 	"net/http"
+	"net/url"
+	"strings"
 )
 
 type TokenOperation struct {
 	CookieOp CookieOperation
 }
 
-func NewTokenOp(domain string) *TokenOperation {
+// Create tokenOp.
+//
+// Arguments;
+//	apiUrl {string} - URL of the API you are using.
+func NewTokenOp(apiUrl string) (*TokenOperation, error) {
+	u, err := url.Parse(apiUrl)
+	if err != nil {
+		return nil, err
+	}
+	splittedHost := strings.Split(u.String(), ".")
+	hostLen := len(splittedHost)
+	domain := strings.Join(splittedHost[hostLen-2:], ".")
+
 	cookieOp := NewCookieOp(domain)
 	return &TokenOperation{
 		CookieOp: *cookieOp,
-	}
+	}, nil
 }
 
 // Set the refresh token.
