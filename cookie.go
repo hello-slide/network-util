@@ -61,7 +61,14 @@ func (c *CookieOperation) Delete(w http.ResponseWriter, req *http.Request, name 
 	if err != nil {
 		return err
 	}
+	cookie.Expires = time.Unix(0, 0)
 	cookie.MaxAge = -1
+
+	cookie.Secure = c.Secure
+	cookie.Path = c.Path
+	cookie.Domain = c.Domain
+	cookie.HttpOnly = c.HttpOnly
+
 	http.SetCookie(w, cookie)
 	return nil
 }
