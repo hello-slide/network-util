@@ -12,9 +12,8 @@ type CookieOperation struct {
 	HttpOnly bool
 }
 
-func NewCookieOp() *CookieOperation {
+func NewCookieOp(domain string) *CookieOperation {
 	path := "/"
-	domain := "hello-slide.jp"
 
 	return &CookieOperation{
 		Path:     path,

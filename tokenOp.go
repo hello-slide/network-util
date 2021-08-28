@@ -8,8 +8,8 @@ type TokenOperation struct {
 	CookieOp CookieOperation
 }
 
-func NewTokenOp() *TokenOperation {
-	cookieOp := NewCookieOp()
+func NewTokenOp(domain string) *TokenOperation {
+	cookieOp := NewCookieOp(domain)
 	return &TokenOperation{
 		CookieOp: *cookieOp,
 	}
