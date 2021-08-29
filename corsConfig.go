@@ -9,4 +9,5 @@ var CorsConfig = cors.New(cors.Options{
 		"https://hello-slide.net",
 		"http://localhost:3000",
 	},
+	AllowCredentials: true,
 })
