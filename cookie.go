@@ -45,6 +45,7 @@ func (c *CookieOperation) Set(w http.ResponseWriter, name string, value string, 
 		Path:     c.Path,
 		Domain:   c.Domain,
 		HttpOnly: c.HttpOnly,
+		SameSite: http.SameSiteNoneMode,
 	}
 
 	http.SetCookie(w, cookie)
@@ -68,6 +69,7 @@ func (c *CookieOperation) Delete(w http.ResponseWriter, req *http.Request, name 
 	cookie.Path = c.Path
 	cookie.Domain = c.Domain
 	cookie.HttpOnly = c.HttpOnly
+	cookie.SameSite = http.SameSiteNoneMode
 
 	http.SetCookie(w, cookie)
 	return nil
